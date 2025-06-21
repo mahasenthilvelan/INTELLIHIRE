@@ -10,7 +10,7 @@ import streamlit as st
 import time
 
 # Display Logo (upload 'logo.png' to the same folder or use a URL)
-st.image("/content/Tech Recruitment Service Logo INTELLIHIRE.png", width=250)  # ← #your_logo_path
+st.image("logo.png", width=250)  # ← #your_logo_path
 
 # Animated Text
 st.markdown("<h3 style='text-align: center;'>👋 Welcome to AI Resume Sculptor</h3>", unsafe_allow_html=True)
