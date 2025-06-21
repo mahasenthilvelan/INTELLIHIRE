@@ -1,0 +1,16 @@
+streamlit
+pandas
+requests
+pyrebase
+mailslurp-client
+pdfplumber
+python-docx
+docx2txt
+spacy
+textstat
+pyngrok
+openai
+flask
+PyPDF2
+google-api-python-client
+scikit-learn
