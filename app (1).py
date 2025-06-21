@@ -685,7 +685,7 @@ app.run(port=1112)  # Or any free port like 8080
 # 📘 Example Notebook: Flask + Ngrok + Streamlit (Full Setup)
 
 # ✅ STEP 1: Install Requirements
-!pip install flask pyngrok streamlit -q
+pip install flask pyngrok streamlit -q
 
 # ✅ STEP 2: Create a simple Flask backend API
 flask_code = '''
