@@ -1,6 +1,6 @@
 import streamlit as st
 
-# Title
+
 st.title("🔐 Welcome to AI Resume Sculptor")
 
 st.subheader("Login to Continue")
