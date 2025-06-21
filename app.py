@@ -68,7 +68,7 @@ elif login_method == "Continue with Google":
         st.success("✅ Google login simulated (actual implementation uses Firebase or OAuth2).")
 
 
-!pip install streamlit pyngrok docx2txt pymupdf
+pip install streamlit pyngrok docx2txt pymupdf
 import fitz  # PyMuPDF
 import docx2txt
 import re
@@ -188,7 +188,7 @@ print(json.dumps(result, indent=2))
 pip install streamlit requests
 
 
-!pip install streamlit pyngrok
+pip install streamlit pyngrok
 from pyngrok import ngrok
 
 # Set your ngrok token directly
@@ -223,7 +223,7 @@ print("🔗 Your app is available at:", public_url)
 
 
 
-!pip install streamlit pdfplumber python-docx
+pip install streamlit pdfplumber python-docx
 import streamlit as st
 import pdfplumber
 import docx
@@ -300,7 +300,7 @@ if uploaded_file is not None:
 
 
 
-!pip install textstat
+pip install textstat
 import textstat
 
 def analyze_soft_signals(text):
@@ -1162,7 +1162,7 @@ if st.button("Sign Up"):
 
 #Step 18: OTP via SendGrid or Twilio (Optional for Production Use)
 #step 1
-!pip install sendgrid
+pip install sendgrid
 
 
 #Step 18: OTP via SendGrid or Twilio (Optional for Production Use)
