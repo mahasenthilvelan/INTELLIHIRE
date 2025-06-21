@@ -73,10 +73,12 @@ import fitz  # PyMuPDF
 import docx2txt
 import re
 import spacy
-from google.colab import files
+import streamlit as st
+uploaded_file = st.file_uploader("Upload your resume", type=["pdf", "docx"])
+
 
 # Upload a resume file
-uploaded = files.upload()
+
 
 # Check if a file was uploaded
 if uploaded:
