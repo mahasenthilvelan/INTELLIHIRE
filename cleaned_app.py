@@ -13,7 +13,7 @@ import time
 st.image("logo.png", width=250)  # ← #your_logo_path
 
 # Animated Text
-st.markdown("<h3 style='text-align: center;'>👋 Welcome to AI Resume Sculptor</h3>", unsafe_allow_html=True)
+st.markdown("<h3 style='text-align: center;'>👋 Welcome to intellihire</h3>", unsafe_allow_html=True)
 st.markdown("<h4 style='text-align: center;'>Your Smart ATS & HR Companion</h4>", unsafe_allow_html=True)
 
 # Add a short delay to simulate splash screen effect
@@ -30,7 +30,7 @@ st.markdown("---")
 import streamlit as st
 
 # Title
-st.title("🔐 Welcome to AI Resume Sculptor")
+st.title("🔐 Welcome to intellihire")
 
 st.subheader("Login to Continue")
 
@@ -57,20 +57,22 @@ elif login_method == "Continue with Google":
 
 # In[ ]:
 
-
-get_ipython().system('pip install streamlit pyngrok docx2txt pymupdf')
+import streamlit as st
 import fitz  # PyMuPDF
 import docx2txt
 import re
 import spacy
-from google.colab import files
+import tempfile
+import json
 
-# Upload a resume file
-uploaded = files.upload()
+st.title("📄 Resume Parser")
 
-# Check if a file was uploaded
-if uploaded:
-    filename = list(uploaded.keys())[0]
+uploaded_file = st.file_uploader("Upload your resume", type=["pdf", "docx"])
+
+if uploaded_file:
+    with tempfile.NamedTemporaryFile(delete=False) as tmp_file:
+        tmp_file.write(uploaded_file.read())
+        filename = tmp_file.name
 
     # Function: Extract text
     def extract_text(filename):
@@ -78,7 +80,7 @@ if uploaded:
             doc = fitz.open(filename)
             text = ""
             for page in doc:
-                text += page.get_text("text") # Use "text" argument for better extraction
+                text += page.get_text("text")
             return text
         elif filename.endswith(".docx"):
             return docx2txt.process(filename)
@@ -113,14 +115,10 @@ if uploaded:
 
     # Run all
     text = extract_text(filename)
-    print("---Extracted Text---")
-    print(text)
-    print("---End of Extracted Text---")
     name = extract_name(text)
     email, phone = extract_contact(text)
     skills = extract_skills(text)
 
-    # Show result
     resume_data = {
         "name": name,
         "email": email,
@@ -128,10 +126,21 @@ if uploaded:
         "skills": skills
     }
 
-    import json
-    print(json.dumps(resume_data, indent=2))
+    # Show results in Streamlit
+    st.subheader("📋 Extracted Resume Data")
+    st.write("**Name:**", name)
+    st.write("**Email:**", email)
+    st.write("**Phone:**", phone)
+    st.write("**Skills:**", ", ".join(skills))
+    st.text_area("📝 Full Resume Text", text[:3000])
 else:
-    print("No file uploaded.")
+    st.info("⬆️ Please upload a resume file to begin.")
+
+    st.subheader("📦 JSON Output")
+    st.json(resume_data)
+else:
+    st.warning("⚠️ No file uploaded.")
+
 
 
 # In[ ]:
@@ -183,13 +192,13 @@ print(json.dumps(result, indent=2))
 # In[ ]:
 
 
-get_ipython().system('pip install streamlit requests')
+
 
 
 # In[ ]:
 
 
-get_ipython().system('pip install streamlit pyngrok')
+
 from pyngrok import ngrok
 
 # Set your ngrok token directly
@@ -227,7 +236,7 @@ print("🔗 Your app is available at:", public_url)
 # In[ ]:
 
 
-get_ipython().system('pip install streamlit pdfplumber python-docx')
+
 import streamlit as st
 import pdfplumber
 import docx
@@ -310,7 +319,6 @@ if uploaded_file is not None:
 # In[ ]:
 
 
-get_ipython().system('pip install textstat')
 import textstat
 
 def analyze_soft_signals(text):
@@ -469,12 +477,12 @@ import time
 
 # Mock database for scheduled interviews by company (based on resume match)
 interview_schedule = {
-    "Maha Lakshmi": {
+    "Anu": {
         "status": "selected",
         "slot": "2025-06-22, 10:30 AM",
         "company": "TechNova Solutions"
     },
-    "Ravi Kumar": {
+    "Ravi": {
         "status": "rejected",
         "slot": None,
         "company": "TechNova Solutions"
@@ -1169,7 +1177,7 @@ for row in rows:
 
 # Define resume_data (normally this is extracted earlier from uploaded resume)
 resume_data = {
-    "name": "Maha Lakshmi",
+    "name": "Anu",
     "email": "maha@example.com",
     "phone": "1234567890",
     "skills": ["python", "data analysis", "machine learning"]
@@ -1250,7 +1258,6 @@ if st.button("Compare Skills (TF-IDF Match)"):
 
 
 #step 17
-get_ipython().system('pip install pyrebase4')
 
 
 # In[ ]:
@@ -1392,13 +1399,9 @@ if st.button("Sign Up"):
 
 #Step 18: OTP via SendGrid or Twilio (Optional for Production Use)
 #step 1
-get_ipython().system('pip install sendgrid')
 
 
 # In[ ]:
-
-
-get_ipython().system('pip install mailslurp-client')
 
 
 # In[ ]:
@@ -1652,19 +1655,49 @@ ngrok.set_auth_token("2ygEupQpveEWCPPm6X14z4s1CAA_7GpWHAh3HAtvTftdkqoQF")  # �
 
 # 📦 Define your project requirements
 requirements = [
-    "streamlit",
-    "pdfplumber",
-    "python-docx",
+    "datetime",
+    "difflib",
+    "docx",
     "docx2txt",
-    "spacy",
-    "textstat",
-    "pyngrok",
-    "requests",
-    "openai",
+    "dotenv",
+    "pymupdf",
     "flask",
-    "PyPDF2",
-    "google-api-python-client",
-    "pandas"
+    "google",
+    "json",
+    "mailslurp_client",
+    "openai",
+    "os",
+    "pandas",
+    "pdfplumber",
+    "pymongo",
+    "pyngrok",
+    "pyrebase",
+    "pyrebase4",
+    "random",
+    "re",
+    "MongoClient",
+    "requests",
+    "sklearn",
+    "spacy", 
+    "sqlite3",
+    "streamlit",
+    "sendgrid",
+    "subprocess",
+    "textstat",
+    "time",
+    "fitz",
+    "ngrok",
+    "streamlit -q",
+    "jsonify",
+    "TfidfVectorizer",
+    "cosine_similarity",
+    "mailslurp-client",
+    "Configuration",
+    "ApiClient",
+    "InboxControllerApi",
+    "SendEmailOptions",
+    "load_dotenv",
+    "dotenv"    
 ]
 # ✅ You can add or remove packages based on your actual usage
 # Example: remove `flask` if not used in your app
@@ -1685,7 +1718,6 @@ with open(config_path, "w", encoding="utf-8") as f:
 # In[ ]:
 
 
-get_ipython().system('pip install streamlit pdfplumber python-docx docx2txt spacy textstat pyngrok requests flask pandas')
 
 
 # In[ ]:
@@ -1705,14 +1737,11 @@ if uploaded_file:
 
 
 #Launch the Streamlit App
-get_ipython().system('streamlit run /content/app (1).py')
 
 
 # In[ ]:
 
 
-get_ipython().system('mv "app (1).py" app.py')
-get_ipython().system('streamlit run app.py')
 
 
 # In[ ]:
@@ -1725,8 +1754,9 @@ print("Your public app URL:", public_url)
 # In[ ]:
 
 
-with open("app.py", "w") as f:
+with open("cleaned_app.py", "w") as f:
     f.write("""
+
 import streamlit as st
 
 st.set_page_config(page_title="IntelliHire", layout="centered")
@@ -1763,7 +1793,6 @@ if uploaded_file:
 
 
 #create mongo Db
-get_ipython().system('pip install pymongo')
 
 
 # In[ ]:
@@ -1866,7 +1895,6 @@ mongo_uri = "mongodb+srv://mahalakshmisenthilvelan:mahasenthilvelan@maha-intelli
 # In[ ]:
 
 
-get_ipython().system('pip install python-dotenv')
 
 
 # In[ ]:
@@ -1880,5 +1908,4 @@ openai.api_key ="sk-proj-R2N2B5sRnWRLV4UfiVEqWSYDkUE5wL85TXsTKGUOIXqEzyARlGilwhW
 # In[ ]:
 
 
-get_ipython().system('streamlit run app.py')
 
