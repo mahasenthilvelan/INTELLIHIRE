@@ -1691,7 +1691,6 @@ requirements = [
     "pyrebase4",
     "random",
     "re",
-    "MongoClient",
     "requests",
     "sklearn",
     "spacy", 
@@ -1701,18 +1700,12 @@ requirements = [
     "subprocess",
     "textstat",
     "time",
-    "fitz",
     "ngrok",
     "streamlit -q",
     "jsonify",
     "TfidfVectorizer",
     "cosine_similarity",
     "mailslurp-client",
-    "Configuration",
-    "ApiClient",
-    "InboxControllerApi",
-    "SendEmailOptions",
-    "load_dotenv",
     "dotenv"    
 ]
 # ✅ You can add or remove packages based on your actual usage
