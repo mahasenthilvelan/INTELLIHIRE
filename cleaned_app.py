@@ -57,17 +57,6 @@ elif login_method == "Continue with Google":
 
 # In[ ]:
 
-import streamlit as st
-import fitz  # PyMuPDF
-import docx2txt
-import re
-import spacy
-import tempfile
-import json
-
-st.title("📄 Resume Parser")
-
-uploaded_file = st.file_uploader("Upload your resume", type=["pdf", "docx"])
 
 import streamlit as st
 import tempfile
