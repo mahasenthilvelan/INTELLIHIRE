@@ -18,7 +18,6 @@ pyrebase
 pyrebase4
 random
 re
-MongoClient
 requests
 sklearn
 spacy
@@ -28,17 +27,11 @@ sendgrid
 subprocess
 textstat
 time
-fitz
 ngrok
 streamlit -q
 jsonify
 TfidfVectorizer
 cosine_similarity
 mailslurp-client
-Configuration
-ApiClient
-InboxControllerApi
-SendEmailOptions
-load_dotenv
 dotenv
 
