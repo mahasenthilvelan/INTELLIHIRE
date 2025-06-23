@@ -69,6 +69,17 @@ st.title("📄 Resume Parser")
 
 uploaded_file = st.file_uploader("Upload your resume", type=["pdf", "docx"])
 
+import streamlit as st
+import tempfile
+import fitz  # PyMuPDF
+import docx2txt
+import re
+import spacy
+
+st.title("📄 Resume Parser App")
+
+uploaded_file = st.file_uploader("Upload Resume (.pdf or .docx)", type=["pdf", "docx"])
+
 if uploaded_file:
     with tempfile.NamedTemporaryFile(delete=False) as tmp_file:
         tmp_file.write(uploaded_file.read())
@@ -91,7 +102,7 @@ if uploaded_file:
     def extract_contact(text):
         email = re.findall(r"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}", text)
         phone = re.findall(r"\+?\d[\d\s\-]{8,}", text)
-        return email[0] if email else "", phone[0] if phone else ""
+        return email[0] if email else "Not found", phone[0] if phone else "Not found"
 
     # Extract name using SpaCy NER
     def extract_name(text):
@@ -100,7 +111,7 @@ if uploaded_file:
         for ent in doc.ents:
             if ent.label_ == "PERSON":
                 return ent.text
-        return "Name Not Found"
+        return "Not found"
 
     # Extract skills using SpaCy
     def extract_skills(text):
@@ -126,21 +137,26 @@ if uploaded_file:
         "skills": skills
     }
 
-    # Show results in Streamlit
+    # Show results
     st.subheader("📋 Extracted Resume Data")
     st.write("**Name:**", name)
     st.write("**Email:**", email)
     st.write("**Phone:**", phone)
     st.write("**Skills:**", ", ".join(skills))
     st.text_area("📝 Full Resume Text", text[:3000])
-else:
-    st.info("⬆️ Please upload a resume file to begin.")
-
     st.subheader("📦 JSON Output")
     st.json(resume_data)
-else:
-    st.warning("⚠️ No file uploaded.")
 
+else:
+    st.info("⬆️ Please upload a resume file to begin.")
+    resume_data = {
+        "name": "N/A",
+        "email": "N/A",
+        "phone": "N/A",
+        "skills": []
+    }
+    st.subheader("📦 JSON Output")
+    st.json(resume_data)
 
 
 # In[ ]:
