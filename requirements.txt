@@ -14,3 +14,4 @@ flask
 PyPDF2
 google-api-python-client
 scikit-learn
+pymupdf
