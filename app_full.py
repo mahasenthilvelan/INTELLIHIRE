@@ -90,4 +90,4 @@ elif st.session_state['page'] == 'dashboard':
     st.button("Mock Interview")
     st.button("Scheduler")
     st.button("Feedback")
-    st.button("Kannama Chatbot")
+    st.button("laks Chatbot")
