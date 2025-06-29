@@ -14,16 +14,22 @@ except OSError:
     st.error("SpaCy model not found. Please run: python -m spacy download en_core_web_sm")
     st.stop()
 
+# SAFE rerun fallback
 if 'page' not in st.session_state:
     st.session_state['page'] = 'splash'
+    st.session_state['splash_done'] = False
 
 # Splash
 if st.session_state['page'] == 'splash':
-    st.image('logo.png', width=200)
-    st.title("Welcome to IntelliHire")
-    time.sleep(1)
-    st.session_state['page'] = 'login'
-    st.experimental_rerun()
+    if not st.session_state['splash_done']:
+        st.image('logo.png', width=200)
+        st.title("Welcome to IntelliHire")
+        time.sleep(1)
+        st.session_state['splash_done'] = True
+        st.session_state['page'] = 'login'
+        st.stop()
+    else:
+        st.session_state['page'] = 'login'
 
 # Login
 elif st.session_state['page'] == 'login':
