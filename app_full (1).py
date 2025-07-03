@@ -11,7 +11,7 @@ from sklearn.metrics.pairwise import cosine_similarity
 # Safe SpaCy load
 # ---------------------------
 try:
-    nlp = spacy.load("en_core_web_sm")
+    nlp = spacy.load('en_core_web_sm')
 except OSError:
     st.error("❌ SpaCy model not found. Please run: python -m spacy download en_core_web_sm")
     st.stop()
